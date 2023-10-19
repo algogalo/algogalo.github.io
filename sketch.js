@@ -134,11 +134,24 @@ let balls = [new Ball(100, 400, 50),
 	new Ball(700, 400, r)
 ];
 console.log(balls);
+console.log(balls[0].r);
+
+
 function setup() {
   createCanvas(710, 400);
 }
 
 function draw() {
+
+console.log(balls[0].position.x)
+console.log(balls[0].position.y)
+
+if (mouseIsPressed){
+	balls[0].r=15;
+}else{
+	balls[0].r=50;
+}
+
   background(255);
     balls[0].lines(balls[1]);
     balls[1].lines(balls[2]);
