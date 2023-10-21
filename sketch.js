@@ -146,7 +146,13 @@ function draw() {
 console.log(balls[0].position.x)
 console.log(balls[0].position.y)
 
-if (mouseIsPressed){
+if (mouseIsPressed &&
+	mouseX >= balls[0].position.x - balls[0].r &&
+	mouseX <= balls[0].position.x + balls[0].r &&
+	mouseY >= balls[0].position.y - balls[0].r &&
+	mouseY <= balls[0].position.y + balls[0].r
+
+){
 	balls[0].r=15;
 }else{
 	balls[0].r=50;
