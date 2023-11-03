@@ -2,7 +2,7 @@ class Ball {
   constructor(x, y, r, c) {
     this.position = new p5.Vector(x, y);
     this.velocity = p5.Vector.random2D();
-    this.velocity.mult(1);
+    this.velocity.mult(1.2);
     this.r = r;
     this.m = r * 0.1;
 	  this.c = c
@@ -121,10 +121,11 @@ class Ball {
    //noStroke();
     fill(this.c);
     ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);
+	strokeWeight(2);
+	stroke("white");
   }
 lines(other){
 	  line(this.position.x, this.position.y, other.position.x , other.position.y)
-	
 }
 }
 
@@ -156,7 +157,7 @@ if (balls[0].c === 200 &&
 	mouseY <= balls[0].position.y + balls[0].r
 ){
 balls[0].c = 0;
-	window.open("https://www.google.com");
+	//window.open("https://www.google.com");
 }else if (balls[0].c == 0 &&
 	mouseX >= balls[0].position.x - balls[0].r &&
 	mouseX <= balls[0].position.x + balls[0].r &&
@@ -172,7 +173,7 @@ function draw() {
 //console.log(balls[0].position.x)
 //console.log(balls[0].position.y)
 
-  background(255);
+  background(0);
     balls[0].lines(balls[1]);
     balls[1].lines(balls[2]);
     balls[2].lines(balls[0]);
