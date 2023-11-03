@@ -5,7 +5,7 @@ class Ball {
     this.velocity.mult(1.2);
     this.r = r;
     this.m = r * 0.1;
-	  this.c = c
+	  this.c = c;
   }
   update() {
     this.position.add(this.velocity);
@@ -121,7 +121,7 @@ class Ball {
    //noStroke();
     fill(this.c);
     ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);
-	strokeWeight(2);
+	strokeWeight(2.5);
 	stroke("white");
   }
 lines(other){
@@ -141,8 +141,9 @@ console.log(balls[0].r);
 console.log(balls[0])
 
 function setup() {
-  var cnv = createCanvas(windowWidth, windowHeight);
-  cnv.style('display', 'block');
+	var cnv = createCanvas(windowWidth, windowHeight);
+	cnv.style('display', 'block');
+	cnv.id("sketch");
 }
 
 function windowResized() {
