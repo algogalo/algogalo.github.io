@@ -140,8 +140,13 @@ console.log(balls[0].r);
 console.log(balls[0])
 
 function setup() {
-  createCanvas(710, 400);
+  var cnv = createCanvas(windowWidth, windowHeight);
+  cnv.style('display', 'block');
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+} 
 
 function mouseClicked() {
 if (balls[0].c === 200 &&
