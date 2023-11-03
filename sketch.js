@@ -1,10 +1,11 @@
 class Ball {
-  constructor(x, y, r) {
+  constructor(x, y, r, c) {
     this.position = new p5.Vector(x, y);
     this.velocity = p5.Vector.random2D();
     this.velocity.mult(1);
     this.r = r;
     this.m = r * 0.1;
+	  this.c = c
   }
   update() {
     this.position.add(this.velocity);
@@ -118,7 +119,7 @@ class Ball {
 
   display() {
    //noStroke();
-    fill(0);
+    fill(this.c);
     ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);
   }
 lines(other){
@@ -127,30 +128,44 @@ lines(other){
 }
 }
 
-let r=15;
+let r = 15;
+let c = 0;
 
-let balls = [new Ball(100, 400, 50), 
-	new Ball(300, 200, r),
-	new Ball(700, 400, r)
+let balls = [new Ball(100, 400, 50, 200), 
+	new Ball(300, 200, r, c),
+	new Ball(700, 400, r, c)
 ];
 console.log(balls);
 console.log(balls[0].r);
-
+console.log(balls[0])
 
 function setup() {
   createCanvas(710, 400);
 }
 
+function mouseClicked() {
+if (balls[0].c === 200 &&
+	mouseX >= balls[0].position.x - balls[0].r &&
+	mouseX <= balls[0].position.x + balls[0].r &&
+	mouseY >= balls[0].position.y - balls[0].r &&
+	mouseY <= balls[0].position.y + balls[0].r
+){
+balls[0].c = 0;
+	window.open("https://www.google.com");
+}else if (balls[0].c == 0 &&
+	mouseX >= balls[0].position.x - balls[0].r &&
+	mouseX <= balls[0].position.x + balls[0].r &&
+	mouseY >= balls[0].position.y - balls[0].r &&
+	mouseY <= balls[0].position.y + balls[0].r
+){
+balls[0].c = 200;
+}
+}
+
 function draw() {
 
-console.log(balls[0].position.x)
-console.log(balls[0].position.y)
-
-if (mouseIsPressed){
-	balls[0].r=15;
-}else{
-	balls[0].r=50;
-}
+//console.log(balls[0].position.x)
+//console.log(balls[0].position.y)
 
   background(255);
     balls[0].lines(balls[1]);
