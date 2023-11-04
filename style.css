@@ -1,0 +1,42 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+
+  /* This centers our sketch horizontally. */
+  justify-content: center;
+
+  /* This centers our sketch vertically. */
+  align-items: center;
+}
+
+#sketch {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+team {
+  align-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 40rem;
+  text-align: justify;
+  color: white;
+  font-family: monospace;
+  opacity: 0%;
+  transition: opacity 2s
+}
+
+team > img {
+  width: 75%;
+}
+
+p {
+  font-size: x-large;
+}

@@ -5,7 +5,7 @@ class Ball {
     this.velocity.mult(1.2);
     this.r = r;
     this.m = r * 0.1;
-	  this.c = c
+	  this.c = c;
   }
   update() {
     this.position.add(this.velocity);
@@ -121,7 +121,7 @@ class Ball {
    //noStroke();
     fill(this.c);
     ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);
-	strokeWeight(2);
+	strokeWeight(2.5);
 	stroke("white");
   }
 lines(other){
@@ -131,6 +131,11 @@ lines(other){
 
 let r = 15;
 let c = 0;
+function chg_opc(opc){
+const team = document.getElementById("cont");
+team.style.opacity = opc
+}
+
 
 let balls = [new Ball(100, 400, 50, 200), 
 	new Ball(300, 200, r, c),
@@ -141,8 +146,9 @@ console.log(balls[0].r);
 console.log(balls[0])
 
 function setup() {
-  var cnv = createCanvas(windowWidth, windowHeight);
-  cnv.style('display', 'block');
+	var cnv = createCanvas(windowWidth, windowHeight);
+	cnv.style('display', 'block');
+	cnv.id("sketch");
 }
 
 function windowResized() {
@@ -157,6 +163,7 @@ if (balls[0].c === 200 &&
 	mouseY <= balls[0].position.y + balls[0].r
 ){
 balls[0].c = 0;
+chg_opc("100%")
 	//window.open("https://www.google.com");
 }else if (balls[0].c == 0 &&
 	mouseX >= balls[0].position.x - balls[0].r &&
@@ -165,6 +172,7 @@ balls[0].c = 0;
 	mouseY <= balls[0].position.y + balls[0].r
 ){
 balls[0].c = 200;
+	chg_opc("0%")
 }
 }
 
