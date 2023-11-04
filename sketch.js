@@ -131,6 +131,11 @@ lines(other){
 
 let r = 15;
 let c = 0;
+function chg_opc(opc){
+const team = document.getElementById("cont");
+team.style.opacity = opc
+}
+
 
 let balls = [new Ball(100, 400, 50, 200), 
 	new Ball(300, 200, r, c),
@@ -158,6 +163,7 @@ if (balls[0].c === 200 &&
 	mouseY <= balls[0].position.y + balls[0].r
 ){
 balls[0].c = 0;
+chg_opc("100%")
 	//window.open("https://www.google.com");
 }else if (balls[0].c == 0 &&
 	mouseX >= balls[0].position.x - balls[0].r &&
@@ -166,6 +172,7 @@ balls[0].c = 0;
 	mouseY <= balls[0].position.y + balls[0].r
 ){
 balls[0].c = 200;
+	chg_opc("0%")
 }
 }
 

@@ -20,7 +20,7 @@ body {
   z-index: -1;
 }
 
-content {
+team {
   align-content: center;
   display: flex;
   align-items: center;
@@ -29,9 +29,11 @@ content {
   text-align: justify;
   color: white;
   font-family: monospace;
+  opacity: 0%;
+  transition: opacity 2s
 }
 
-content > img {
+team > img {
   width: 75%;
 }
 
