@@ -4,6 +4,7 @@ class Ball {
     this.velocity = p5.Vector.random2D();
     this.velocity.mult(1.2);
     this.r = r;
+	  this.r_mult = 4
     this.m = r * 0.1;
 	  this.c = c;
   }
@@ -121,23 +122,28 @@ class Ball {
    //noStroke();
     fill(this.c);
     ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);
-	strokeWeight(2.5);
+	strokeWeight(1);
 	stroke("white");
   }
 lines(other){
 	  line(this.position.x, this.position.y, other.position.x , other.position.y)
 }
+mk_button(){fill("blue"); 
+	ellipse(this.position.x, this.position.y, this.r * this.r_mult, this.r * this.r_mult);
+}
 }
 
 let r = 15;
 let c = 0;
+let c_alt = 255;
+
 function chg_opc(opc){
 const team = document.getElementById("cont");
 team.style.opacity = opc
 }
 
 
-let balls = [new Ball(100, 400, 50, 200), 
+let balls = [new Ball(100, 400, 50, c_alt), 
 	new Ball(300, 200, r, c),
 	new Ball(700, 400, r, c)
 ];
@@ -156,7 +162,7 @@ function windowResized() {
 } 
 
 function mouseClicked() {
-if (balls[0].c === 200 &&
+if (balls[0].c === c_alt &&
 	mouseX >= balls[0].position.x - balls[0].r &&
 	mouseX <= balls[0].position.x + balls[0].r &&
 	mouseY >= balls[0].position.y - balls[0].r &&
@@ -171,7 +177,7 @@ chg_opc("100%")
 	mouseY >= balls[0].position.y - balls[0].r &&
 	mouseY <= balls[0].position.y + balls[0].r
 ){
-balls[0].c = 200;
+balls[0].c = c_alt;
 	chg_opc("0%")
 }
 }
@@ -181,10 +187,11 @@ function draw() {
 //console.log(balls[0].position.x)
 //console.log(balls[0].position.y)
 
-  background(0);
+  background(0,8);
     balls[0].lines(balls[1]);
     balls[1].lines(balls[2]);
     balls[2].lines(balls[0]);
+   // balls[0].mk_button();
   for (let i = 0; i < balls.length; i++) {
     let b = balls[i];
     b.update();
