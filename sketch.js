@@ -169,7 +169,7 @@ function setup() {
 	cnv.id("sketch");
 	textSize(20);
 	textAlign(CENTER, CENTER);
-	textFont('Courier New');
+	textFont('monospace');
 }
 
 function windowResized() {
