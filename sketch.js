@@ -4,6 +4,7 @@ class Ball {
     this.velocity = p5.Vector.random2D();
     this.velocity.mult(1.2);
     this.r = r;
+	  this.r_mult = 1;
     this.m = r * 0.1;
 	  this.c = c;
   }
@@ -118,26 +119,43 @@ class Ball {
   }
 
   display() {
-   //noStroke();
     fill(this.c);
     ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);
-	strokeWeight(2.5);
+	strokeWeight(2);
 	stroke("white");
   }
-lines(other){
+ lines(other){
 	  line(this.position.x, this.position.y, other.position.x , other.position.y)
+}
+ mk_button(){fill(this.c); 
+   //noStroke();
+	 period += 0.05; 
+	 var amp = 10;
+	 var new_r = amp*sin(period)+85
+
+ellipse(this.position.x, this.position.y, new_r, new_r);
+if (this.c === 0){
+fill(255);
+noStroke();	
+}else{
+fill(0);
+}
+text("bio",this.position.x, this.position.y);
 }
 }
 
 let r = 15;
 let c = 0;
+let c_alt = 255;
+let period =50 
+
 function chg_opc(opc){
 const team = document.getElementById("cont");
 team.style.opacity = opc
 }
 
 
-let balls = [new Ball(100, 400, 50, 200), 
+let balls = [new Ball(100, 400, 40, c_alt), 
 	new Ball(300, 200, r, c),
 	new Ball(700, 400, r, c)
 ];
@@ -149,6 +167,9 @@ function setup() {
 	var cnv = createCanvas(windowWidth, windowHeight);
 	cnv.style('display', 'block');
 	cnv.id("sketch");
+	textSize(20);
+	textAlign(CENTER, CENTER);
+	textFont('Courier New');
 }
 
 function windowResized() {
@@ -156,32 +177,44 @@ function windowResized() {
 } 
 
 function mouseClicked() {
-if (balls[0].c === 200 &&
+if (balls[0].c === c_alt &&
 	mouseX >= balls[0].position.x - balls[0].r &&
 	mouseX <= balls[0].position.x + balls[0].r &&
 	mouseY >= balls[0].position.y - balls[0].r &&
 	mouseY <= balls[0].position.y + balls[0].r
 ){
 balls[0].c = 0;
-chg_opc("100%")
-	//window.open("https://www.google.com");
+chg_opc("100%");
 }else if (balls[0].c == 0 &&
 	mouseX >= balls[0].position.x - balls[0].r &&
 	mouseX <= balls[0].position.x + balls[0].r &&
 	mouseY >= balls[0].position.y - balls[0].r &&
 	mouseY <= balls[0].position.y + balls[0].r
 ){
-balls[0].c = 200;
-	chg_opc("0%")
+balls[0].c = c_alt;
+	chg_opc("0%");
+}else if (balls[1].c == 0 &&
+	mouseX >= balls[1].position.x - balls[1].r &&
+	mouseX <= balls[1].position.x + balls[1].r &&
+	mouseY >= balls[1].position.y - balls[1].r &&
+	mouseY <= balls[1].position.y + balls[1].r
+){
+balls[1].c = c_alt;
+	window.open("https://nexo-inconstante.github.io/");
+}else if (balls[1].c == c_alt &&
+	mouseX >= balls[1].position.x - balls[1].r &&
+	mouseX <= balls[1].position.x + balls[1].r &&
+	mouseY >= balls[1].position.y - balls[1].r &&
+	mouseY <= balls[1].position.y + balls[1].r
+){
+balls[1].c = 0;
+	window.open("https://nexo-inconstante.github.io/");
 }
 }
 
 function draw() {
 
-//console.log(balls[0].position.x)
-//console.log(balls[0].position.y)
-
-  background(0);
+  background(0,20);
     balls[0].lines(balls[1]);
     balls[1].lines(balls[2]);
     balls[2].lines(balls[0]);
@@ -194,5 +227,6 @@ function draw() {
     balls[1].checkCollision(balls[2]);
     balls[2].checkCollision(balls[0]);
   }
+  balls[0].mk_button();
 }
 
